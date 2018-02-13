@@ -5,6 +5,8 @@
   "private": true,
   "author": "Ash Robbins",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^2.2.0",
     "gulp-babel": "^7.0.1",

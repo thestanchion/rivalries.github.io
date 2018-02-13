@@ -1,12 +1,8 @@
-# Player Stats Card
+# Project Kickstart
 
 ## Setup
 
-Clone the repo then `cd` into `Player-stats-Card` and run `npm install`.
-
-Run the following to install Babel:
-
-`npm install --save-dev babel-cli babel-preset-env`.
+Clone the repo then `cd` into `project-kickstart` and run `npm install`.
 
 Run `gulp` to trigger the default task. This will kick off an initial build and start watcher tasks looking for changes in any `.scss` or `.js` file.
 
