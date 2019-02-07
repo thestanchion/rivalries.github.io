@@ -1,21 +1,61 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Project Kickstart</title>
+        <title>FIFA Rivalries</title>
         <link rel="stylesheet" type="text/css" href="dist/css/main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#e5127d">
     </head>
     <body>
-        
+        <div id="app" class="app">
+            <ul class="listing" v-cloak>
+                <li v-for="rivalry in rivalries">
+                    <a href="#" v-on:click="viewRivalry( rivalry )">{{ rivalry.player1 }} vs {{ rivalry.player2 }}</a>
+                </li>
+            </ul>
+
+            <section class="rivalry" v-if="selectedRivalry.results" v-cloak>
+
+                <div class="rivalry__stats" v-if="selectedRivalry.results">
+
+                    <table class="rivalry__players">
+                        <tr>
+                            <td class="rivalry__stat rivalry__player1">{{ selectedRivalry.player1 }}</td>
+                            <td class="rivalry__stat rivalry__versus u-highlight" v-cloak>vs</td>
+                            <td class="rivalry__stat rivalry__player2">{{ selectedRivalry.player2 }}</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="rivalry__stat">Played: {{ selectedRivalry.results.length ? selectedRivalry.results.length : '0' }}</div>
+                    
+                    <table>
+                        <tr>
+                            <td class="rivalry__stat u-highlight-bg">{{ p1.won }}</td>
+                            <td class="rivalry__stat">Wins
+                                <span class="rivalry__draws">({{ p1.drawn }} {{ p1.drawn === 1 ? 'draw' : 'draws' }})</span>
+                            </td>
+                            <td class="rivalry__stat u-highlight-bg">{{ p2.won }}</td>
+                        </tr>
+                        <tr>
+                            <td class="rivalry__stat">{{ p1.goals }}</td>
+                            <td class="rivalry__stat">Goals</td>
+                            <td class="rivalry__stat">{{ p2.goals }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <ol class="rivalry__results">
+                    <li v-for="result in selectedRivalry.results" class="rivalry__result">
+                        {{ selectedRivalry.player1 }} <span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span> {{ selectedRivalry.player2 }}
+                        <span class="rivalry__date">{{ fixtureDate( result.date ) }} </span>
+                    </li>
+                </ol>
+            </section>
+        </div>
         <script src="js/libs/moment.js"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
-
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 
         <script src="dist/js/app.js"></script>
     </body>

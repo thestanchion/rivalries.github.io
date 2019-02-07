@@ -12,3 +12,10 @@
 .u-hidden {
     display: none !important;
 }
+.u-highlight {
+    color: $primary-color !important;
+}
+.u-highlight-bg {
+    background-color: $primary-color !important;
+    color: #fff !important;
+}

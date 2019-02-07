@@ -1,0 +1,67 @@
+.rivalry {
+    font-size: 1.6rem;
+    text-align: center;
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        width: 33.3%;
+    }
+
+    &__stats {
+        margin-bottom: 2rem;
+    }
+    
+    &__stat {
+        padding: 1rem 1rem;
+        background-color: #eee;
+    }
+
+    &__draws {
+        display: block;
+        font-size: 1.1rem;
+    }
+
+    &__players {
+
+        .rivalry__stat {
+            background-color: #1d1b1b;
+            color: #eee;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+    }
+
+    &__versus {
+        margin: 0 2rem;
+        font-size: 1.4rem;
+    }
+
+    &__results {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__result {
+        padding: 1rem 0;
+        font-size: 1.6rem;
+    }
+
+    &__result + &__result {
+        border-top: 3px solid #eee;
+    }
+
+    &__score {
+        font-size: 2.2rem;
+        font-weight: bold;
+    }
+
+    &__date {
+        display: block;
+        font-size: 1.4rem;
+        color: #bbb;
+    }
+}
