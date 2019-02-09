@@ -659,18 +659,26 @@ select {
   .rivalry td {
     width: 33.3%; }
   .rivalry__stats {
-    margin-bottom: 2rem; }
+    margin-bottom: 3rem;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px #ccc; }
   .rivalry__stat {
-    padding: 1rem 1rem;
+    padding: 2rem 1rem;
     background-color: #eee; }
   .rivalry__draws {
     display: block;
     font-size: 1.1rem; }
+  .rivalry__pieWrap {
+    width: 26rem;
+    margin: auto; }
   .rivalry__players .rivalry__stat {
     background-color: #1d1b1b;
     color: #eee;
     font-size: 1.6rem;
     font-weight: bold; }
+  .rivalry__players + .rivalry__stat {
+    padding-bottom: 0; }
   .rivalry__versus {
     margin: 0 2rem;
     font-size: 1.4rem; }
@@ -679,10 +687,11 @@ select {
     margin: 0;
     padding: 0; }
   .rivalry__result {
+    margin-bottom: 1.4rem;
     padding: 1rem 0;
-    font-size: 1.6rem; }
-  .rivalry__result + .rivalry__result {
-    border-top: 3px solid #eee; }
+    font-size: 1.6rem;
+    background-color: #f6f6f6;
+    box-shadow: 0 1px 2px #ccc; }
   .rivalry__score {
     font-size: 2.2rem;
     font-weight: bold; }
@@ -690,3 +699,18 @@ select {
     display: block;
     font-size: 1.4rem;
     color: #bbb; }
+  .rivalry__addResult {
+    margin-bottom: 3rem; }
+    .rivalry__addResult input[type=number] {
+      width: 5rem;
+      padding: .6rem 0;
+      text-align: center; }
+    .rivalry__addResult input[type=submit] {
+      display: block;
+      width: 14rem;
+      margin: 2rem auto 0;
+      padding: 1rem 0;
+      background-color: #38003c;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px; }

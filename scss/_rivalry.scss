@@ -11,17 +11,25 @@
     }
 
     &__stats {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 1px 2px #ccc;
     }
     
     &__stat {
-        padding: 1rem 1rem;
+        padding: 2rem 1rem;
         background-color: #eee;
     }
 
     &__draws {
         display: block;
         font-size: 1.1rem;
+    }
+
+    &__pieWrap {
+        width: 26rem;
+        margin: auto;
     }
 
     &__players {
@@ -31,6 +39,10 @@
             color: #eee;
             font-size: 1.6rem;
             font-weight: bold;
+        }
+
+        & + .rivalry__stat {
+            padding-bottom: 0;
         }
     }
 
@@ -46,12 +58,11 @@
     }
 
     &__result {
+        margin-bottom: 1.4rem;
         padding: 1rem 0;
         font-size: 1.6rem;
-    }
-
-    &__result + &__result {
-        border-top: 3px solid #eee;
+        background-color: #f6f6f6;
+        box-shadow: 0 1px 2px #ccc;
     }
 
     &__score {
@@ -63,5 +74,26 @@
         display: block;
         font-size: 1.4rem;
         color: #bbb;
+    }
+
+    &__addResult {
+        margin-bottom: 3rem;
+
+        input[type=number] {
+            width: 5rem;
+            padding: .6rem 0;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            display: block;
+            width: 14rem;
+            margin: 2rem auto 0;
+            padding: 1rem 0;
+            background-color: $secondary-color;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+        }
     }
 }

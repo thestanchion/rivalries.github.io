@@ -17,6 +17,7 @@ var app = new Vue({
         firebase: firebase.database(),
         rivalries: [],
         selectedRivalry: {},
+        fbIndex: 0,
         p1: {
             won: 0,
             lost: 0,
@@ -34,7 +35,9 @@ var app = new Vue({
             gf: 0,
             ga: 0,
             gd: 0
-        }
+        },
+        p1Score: 0,
+        p2Score: 0
     },
     methods: {
         getData: function getData() {
@@ -44,12 +47,31 @@ var app = new Vue({
                 console.log(_this.rivalries);
             });
         },
-        viewRivalry: function viewRivalry(rivalry) {
+        getNewData: function getNewData() {
+            var _this = this;
+            _this.firebase.ref('/rivalries').once('value').then(function (snapshot) {
+                _this.rivalries = snapshot.val();
+
+                setTimeout(function () {
+                    _this.viewRivalry(_this.rivalries[_this.fbIndex], _this.fbIndex);
+                    _this.p1Score = 0;
+                    _this.p2Score = 0;
+                });
+            });
+        },
+        viewRivalry: function viewRivalry(rivalry, index) {
             var _this = this;
 
             _this.selectedRivalry = rivalry;
+            this.$set(_this.selectedRivalry, 'results', rivalry.results);
+
+            _this.fbIndex = index;
             _this.p1 = _this.buildStats('player1');
             _this.p2 = _this.buildStats('player2');
+
+            setTimeout(function () {
+                _this.bakePie();
+            });
         },
         buildStats: function buildStats(player) {
             var _this = this;
@@ -62,11 +84,17 @@ var app = new Vue({
                 goals: gf
             };
         },
+        gamesPlayed: function gamesPlayed() {
+            var _this = this;
+
+            return Object.keys(_this.selectedRivalry.results).length;
+        },
         getWins: function getWins(player) {
             var _this = this;
             var count = 0;
+            var i = void 0;
 
-            for (var i = 0; i < _this.selectedRivalry.results.length; i++) {
+            for (i in _this.selectedRivalry.results) {
                 var result = _this.selectedRivalry.results[i];
 
                 if (player === 'player1') {
@@ -84,8 +112,9 @@ var app = new Vue({
         getDraws: function getDraws(player) {
             var _this = this;
             var count = 0;
+            var i = void 0;
 
-            for (var i = 0; i < _this.selectedRivalry.results.length; i++) {
+            for (i in _this.selectedRivalry.results) {
                 var result = _this.selectedRivalry.results[i];
 
                 if (result.player1 === result.player2) {
@@ -97,8 +126,9 @@ var app = new Vue({
         getGoalsFor: function getGoalsFor(player) {
             var _this = this;
             var total = 0;
+            var i = void 0;
 
-            for (var i = 0; i < _this.selectedRivalry.results.length; i++) {
+            for (i in _this.selectedRivalry.results) {
                 var result = _this.selectedRivalry.results[i];
 
                 if (player === 'player1') {
@@ -110,8 +140,61 @@ var app = new Vue({
             return total;
         },
         fixtureDate: function fixtureDate(date) {
-
             return moment(date).format(' Do MMMM YYYY');
+        },
+        bakePie: function bakePie() {
+            var _this = this;
+            var winsCtx = document.getElementById('winsPie').getContext('2d');
+            var goalsCtx = document.getElementById('goalsPie').getContext('2d');
+
+            var winsChart = new Chart(winsCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [_this.p1.won, _this.p2.won, _this.p1.drawn],
+                        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [_this.selectedRivalry.player1, _this.selectedRivalry.player2, 'Draws']
+                },
+                options: {
+                    responsive: true,
+                    responsiveAnimationDuration: 0,
+                    maintainAspectRatio: true,
+                    cutoutPercentage: 65
+                }
+            });
+
+            var goalsChart = new Chart(goalsCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [_this.p1.goals, _this.p2.goals],
+                        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"]
+                    }],
+
+                    // These labels appear in the legend and in the tooltips when hovering different arcs
+                    labels: [_this.selectedRivalry.player1, _this.selectedRivalry.player2]
+                },
+                options: {
+                    responsive: true,
+                    responsiveAnimationDuration: 0,
+                    maintainAspectRatio: true,
+                    cutoutPercentage: 65
+                }
+            });
+        },
+        addResult: function addResult(event) {
+            var _this = this;
+            event.preventDefault();
+
+            _this.firebase.ref('/rivalries/' + _this.fbIndex + '/results').push({
+                date: 1249211400000,
+                player1: parseInt(_this.p1Score),
+                player2: parseInt(_this.p2Score)
+            });
+            _this.getNewData();
         }
     },
     created: function created() {

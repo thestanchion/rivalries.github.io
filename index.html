@@ -9,8 +9,8 @@
     <body>
         <div id="app" class="app">
             <ul class="listing" v-cloak>
-                <li v-for="rivalry in rivalries">
-                    <a href="#" v-on:click="viewRivalry( rivalry )">{{ rivalry.player1 }} vs {{ rivalry.player2 }}</a>
+                <li v-for="( rivalry, index ) in rivalries">
+                    <a href="#" v-on:click="viewRivalry( rivalry, index )">{{ rivalry.player1 }} vs {{ rivalry.player2 }}</a>
                 </li>
             </ul>
 
@@ -26,23 +26,34 @@
                         </tr>
                     </table>
                     
-                    <div class="rivalry__stat">Played: {{ selectedRivalry.results.length ? selectedRivalry.results.length : '0' }}</div>
-                    
+                    <div class="rivalry__stat">Played: {{ gamesPlayed() }}</div>
+
                     <table>
                         <tr>
-                            <td class="rivalry__stat u-highlight-bg">{{ p1.won }}</td>
-                            <td class="rivalry__stat">Wins
-                                <span class="rivalry__draws">({{ p1.drawn }} {{ p1.drawn === 1 ? 'draw' : 'draws' }})</span>
-                            </td>
-                            <td class="rivalry__stat u-highlight-bg">{{ p2.won }}</td>
+                            <td class="rivalry__stat">Wins</td>
+                            <td class="rivalry__stat">Goals</td>
                         </tr>
                         <tr>
-                            <td class="rivalry__stat">{{ p1.goals }}</td>
-                            <td class="rivalry__stat">Goals</td>
-                            <td class="rivalry__stat">{{ p2.goals }}</td>
+                            <td class="rivalry__stat">
+                                <div class="rivalry__pieWrap">
+                                    <canvas id="winsPie" class="rivalry__pie" width="400" height="400"></canvas>
+                                </div>
+                            </td>
+                            <td class="rivalry__stat">
+                                <div class="rivalry__pieWrap">
+                                    <canvas id="goalsPie" class="rivalry__pie" width="400" height="400"></canvas>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                 </div>
+
+                <form class="rivalry__addResult">
+                    <label for="player1">{{ selectedRivalry.player1 }}</label>
+                    <input type="number" name="player1" v-model="p1Score" /> - <input type="number" name="player2" v-model="p2Score" />
+                    <label for="player2">{{ selectedRivalry.player2 }}</label>
+                    <input type="submit" value="Add" v-on:click="addResult" />
+                </form>
 
                 <ol class="rivalry__results">
                     <li v-for="result in selectedRivalry.results" class="rivalry__result">
@@ -56,6 +67,7 @@
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
         <script src="dist/js/app.js"></script>
     </body>
