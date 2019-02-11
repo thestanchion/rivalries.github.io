@@ -46,7 +46,7 @@ var app = new Vue({
             var _this = this;
             _this.firebase.ref('/rivalries').once('value').then(function (snapshot) {
                 _this.rivalries = snapshot.val();
-                console.log(_this.rivalries);
+                _this.viewRivalry(_this.rivalries[_this.fbIndex], _this.fbIndex);
             });
         },
         getNewData: function getNewData() {

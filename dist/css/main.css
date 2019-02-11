@@ -644,7 +644,7 @@ select {
 
 .app {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
   margin: 2rem; }
   @media screen and (max-width: 800px) {
@@ -652,6 +652,7 @@ select {
       grid-template-columns: 1fr; } }
 
 .listing {
+  display: none;
   list-style: none; }
 
 .rivalry {
