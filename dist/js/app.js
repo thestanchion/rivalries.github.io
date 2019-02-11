@@ -221,7 +221,9 @@ var app = new Vue({
             var _this = this;
             event.preventDefault();
 
-            var matchRef = firebase.database().ref('/rivalries/' + _this.fbIndex + '/results/' + index);
+            var key = Object.keys(_this.selectedRivalry.results, index);
+
+            var matchRef = _this.firebase.ref('/rivalries/' + _this.fbIndex + '/results/' + key);
 
             matchRef.remove();
             _this.getNewData();

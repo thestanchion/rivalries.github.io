@@ -54,7 +54,7 @@
                     </table>
                 </div>
 
-                <form class="rivalry__addResult">
+                <form class="rivalry__addResult" v-if="selectedRivalry.player1">
                     <label for="player1">{{ selectedRivalry.player1 }}</label>
                     <input type="number" name="player1" v-model="p1Score" /> - <input type="number" name="player2" v-model="p2Score" />
                     <label for="player2">{{ selectedRivalry.player2 }}</label>
