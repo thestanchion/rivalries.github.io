@@ -37,7 +37,9 @@ var app = new Vue({
             gd: 0
         },
         p1Score: 0,
-        p2Score: 0
+        p2Score: 0,
+        newP1: '',
+        newP2: ''
     },
     methods: {
         getData: function getData() {
@@ -59,6 +61,20 @@ var app = new Vue({
                 });
             });
         },
+        addRivalry: function addRivalry(event) {
+            var _this = this;
+            event.preventDefault();
+
+            _this.firebase.ref('/rivalries/').push({
+                results: {},
+                player1: _this.newP1,
+                player2: _this.newP2
+            });
+
+            _this.newP1 = '';
+            _this.newP2 = '';
+        },
+
         viewRivalry: function viewRivalry(rivalry, index) {
             var _this = this;
 
@@ -144,6 +160,11 @@ var app = new Vue({
         },
         bakePie: function bakePie() {
             var _this = this;
+
+            if (!_this.selectedRivalry.results) {
+                return;
+            }
+
             var winsCtx = document.getElementById('winsPie').getContext('2d');
             var goalsCtx = document.getElementById('goalsPie').getContext('2d');
 
@@ -190,11 +211,24 @@ var app = new Vue({
             event.preventDefault();
 
             _this.firebase.ref('/rivalries/' + _this.fbIndex + '/results').push({
-                date: 1249211400000,
+                date: moment().valueOf(),
                 player1: parseInt(_this.p1Score),
                 player2: parseInt(_this.p2Score)
             });
             _this.getNewData();
+        },
+        deleteResult: function deleteResult(event, index) {
+            var _this = this;
+            event.preventDefault();
+
+            var matchRef = firebase.database().ref('/rivalries/' + _this.fbIndex + '/results/' + index);
+
+            matchRef.remove();
+            _this.getNewData();
+        },
+        orderedResults: function orderedResults(results) {
+            var arr = _.orderBy(results, 'date', 'desc');
+            return arr;
         }
     },
     created: function created() {

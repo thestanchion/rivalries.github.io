@@ -12,9 +12,15 @@
                 <li v-for="( rivalry, index ) in rivalries">
                     <a href="#" v-on:click="viewRivalry( rivalry, index )">{{ rivalry.player1 }} vs {{ rivalry.player2 }}</a>
                 </li>
+                <!-- <li>
+                    <input type="text" v-model="newP1" /><br/>
+                    vs<br/>
+                    <input type="text" v-model="newP2" />
+                    <button v-on:click="addRivalry">Add+</button>
+                </li> -->
             </ul>
 
-            <section class="rivalry" v-if="selectedRivalry.results" v-cloak>
+            <section class="rivalry" v-cloak>
 
                 <div class="rivalry__stats" v-if="selectedRivalry.results">
 
@@ -55,15 +61,16 @@
                     <input type="submit" value="Add" v-on:click="addResult" />
                 </form>
 
-                <ol class="rivalry__results">
-                    <li v-for="result in selectedRivalry.results" class="rivalry__result">
+                <ol class="rivalry__results" v-if="selectedRivalry.results">
+                    <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
                         {{ selectedRivalry.player1 }} <span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span> {{ selectedRivalry.player2 }}
-                        <span class="rivalry__date">{{ fixtureDate( result.date ) }} </span>
+                        <span class="rivalry__date">{{ fixtureDate( result.date ) }} <a href="#x" v-on:click="deleteResult( $event, index )">x</a></span>
                     </li>
                 </ol>
             </section>
         </div>
         <script src="js/libs/moment.js"></script>
+        <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>

@@ -3,6 +3,10 @@
     grid-template-columns: 1fr 4fr;
     grid-gap: 2rem;
     margin: 2rem;
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .listing {
