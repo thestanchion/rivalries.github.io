@@ -82,6 +82,7 @@ const app = new Vue({
             _this.fbIndex = index;
             _this.p1 = _this.buildStats( 'player1' );
             _this.p2 = _this.buildStats( 'player2' );
+            _this.getStreak();
 
             setTimeout( function() {
                 _this.bakePie();
@@ -171,7 +172,7 @@ const app = new Vue({
                 data: {
                     datasets: [{
                         data: [_this.p1.won, _this.p2.won, _this.p1.drawn],
-                        backgroundColor :["rgb(218 41 28)","rgb(0,91,158)","rgb(255, 205, 86)"]
+                        backgroundColor :["rgb(218, 41, 28)","rgb(0,91,158)","rgb(255, 205, 86)"]
                     }],
                 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
@@ -194,7 +195,7 @@ const app = new Vue({
                 data: {
                     datasets: [{
                         data: [_this.p1.goals, _this.p2.goals],
-                        backgroundColor :["rgb(218 41 28)","rgb(0,91,158)"]
+                        backgroundColor :["rgb(218, 41, 28)","rgb(0,91,158)"]
                     }],
                 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
@@ -236,6 +237,30 @@ const app = new Vue({
         orderedResults: function( results ) {
             let arr = _.orderBy( results, 'date', 'desc' );
             return arr;
+        },
+        getStreak:function() {
+            const _this = this;
+
+            let i,
+                streakholder = '',
+                p1Count = 0,
+                p2Count = 0;
+
+            for ( i in _this.selectedRivalry.results ) {
+                let result = _this.selectedRivalry.results[i];
+
+                if ( result.player1 > result.player2 ) {
+                    streakholder = _this.selectedRivalry.player1;
+                    p2Count =  0;
+                    p1Count++;
+                } else if ( result.player2 > result.player1 ) {
+                    streakholder = _this.selectedRivalry.player1;
+                    p1Count =  0;
+                    p2Count++;
+                }
+            }
+            console.log({p1Count, p2Count});
+            return `Longest streak: ${streakholder} - ${p1Count > p2Count ? p1Count : p2Count} games`;
         }
     },
     created: function() {

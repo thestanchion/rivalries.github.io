@@ -670,6 +670,9 @@ select {
   .rivalry__stat {
     padding: 2rem 1rem;
     background-color: #eee; }
+    .rivalry__stat--streak {
+      margin-bottom: 3rem;
+      background-color: #f7f756; }
   .rivalry__draws {
     display: block;
     font-size: 1.1rem; }

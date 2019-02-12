@@ -20,6 +20,11 @@
     &__stat {
         padding: 2rem 1rem;
         background-color: #eee;
+
+        &--streak {
+            margin-bottom: 3rem;
+            background-color: $streak;
+        }
     }
 
     &__draws {

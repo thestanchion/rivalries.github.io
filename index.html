@@ -61,6 +61,8 @@
                     <input type="submit" value="Add" v-on:click="addResult" />
                 </form>
 
+                <div class="rivalry__stat rivalry__stat--streak" v-if="selectedRivalry.results">{{ getStreak() }}</div>
+
                 <ol class="rivalry__results" v-if="selectedRivalry.results">
                     <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
                         {{ selectedRivalry.player1 }} <span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span> {{ selectedRivalry.player2 }}
