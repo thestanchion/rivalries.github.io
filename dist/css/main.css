@@ -679,16 +679,28 @@ select {
   .rivalry__pieWrap {
     width: 26rem;
     margin: auto; }
-  .rivalry__players .rivalry__stat {
-    background-color: #1d1b1b;
-    color: #eee;
-    font-size: 1.6rem;
-    font-weight: bold; }
-  .rivalry__players + .rivalry__stat {
-    padding-bottom: 0; }
+  .rivalry__players {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex; }
+    .rivalry__players .rivalry__stat {
+      color: #eee;
+      font-size: 2rem;
+      font-weight: bold;
+      text-transform: uppercase; }
+    .rivalry__players .rivalry__player1 {
+      background-color: #da291c; }
+    .rivalry__players .rivalry__player2 {
+      background-color: #005b9e; }
+    .rivalry__players + .rivalry__stat {
+      padding-bottom: 0; }
   .rivalry__versus {
-    margin: 0 2rem;
-    font-size: 1.4rem; }
+    position: absolute;
+    font-size: 1.4rem;
+    color: #fff !important;
+    background-color: transparent;
+    -ms-transform: translateX(-50%);
+        transform: translateX(-50%); }
   .rivalry__results {
     list-style: none;
     margin: 0;

@@ -24,13 +24,11 @@
 
                 <div class="rivalry__stats" v-if="selectedRivalry.results">
 
-                    <table class="rivalry__players">
-                        <tr>
-                            <td class="rivalry__stat rivalry__player1">{{ selectedRivalry.player1 }}</td>
-                            <td class="rivalry__stat rivalry__versus u-highlight" v-cloak>vs</td>
-                            <td class="rivalry__stat rivalry__player2">{{ selectedRivalry.player2 }}</td>
-                        </tr>
-                    </table>
+                    <div class="rivalry__players">
+                        <span class="rivalry__stat rivalry__player1" :style="getStyle('p1')">{{ selectedRivalry.player1 }}</span>
+                        <span class="rivalry__stat rivalry__player2" :style="getStyle('p2')">{{ selectedRivalry.player2 }}</span>
+                        <span class="rivalry__stat rivalry__versus u-highlight" v-cloak :style="vsPos">vs</span>
+                    </div>
                     
                     <div class="rivalry__stat">Played: {{ gamesPlayed() }}</div>
 

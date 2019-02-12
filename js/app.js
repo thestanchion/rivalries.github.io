@@ -18,26 +18,18 @@ const app = new Vue({
         fbIndex: 0,
         p1: {
             won: 0,
-            lost: 0,
             drawn: 0,
-            points: 0,
             gf: 0,
-            ga: 0,
-            gd: 0
         },
         p2: {
             won: 0,
-            lost: 0,
-            drawn: 0,
-            points: 0,
             gf: 0,
-            ga: 0,
-            gd: 0
         },
         p1Score: 0,
         p2Score: 0,
         newP1: '',
-        newP2: ''
+        newP2: '',
+        vsPos: 0
     },
     methods: {
         getData: function() {
@@ -58,7 +50,18 @@ const app = new Vue({
                     _this.p2Score = 0;
                 });
             });
-         },
+        },
+        getStyle: function( player ) {
+            const _this = this;
+            let thisPlayer = _this[player];
+            let width = thisPlayer.won / ( _this.p1.won + _this.p2.won ) * 100;
+
+            if ( player === 'p1' ) {
+                _this.vsPos = `left: ${ width }%;`;
+            }
+
+            return `width: ${ width }%;`;
+        },
          addRivalry( event ) {
             const _this = this;
             event.preventDefault();

@@ -38,12 +38,24 @@
     }
 
     &__players {
+        position: relative;
+        display: flex;
 
-        .rivalry__stat {
-            background-color: #1d1b1b;
-            color: #eee;
-            font-size: 1.6rem;
-            font-weight: bold;
+        .rivalry {
+            &__stat {
+                color: #eee;
+                font-size: 2rem;
+                font-weight: bold;
+                text-transform: uppercase
+            }
+
+            &__player1 {
+                background-color: $p1;
+            }
+
+            &__player2 {
+                background-color: $p2;
+            }
         }
 
         & + .rivalry__stat {
@@ -52,8 +64,11 @@
     }
 
     &__versus {
-        margin: 0 2rem;
+        position: absolute;
         font-size: 1.4rem;
+        color: #fff !important;
+        background-color: transparent;
+        transform: translateX( -50% );
     }
 
     &__results {
