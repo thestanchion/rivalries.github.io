@@ -173,7 +173,7 @@ var app = new Vue({
                 data: {
                     datasets: [{
                         data: [_this.p1.won, _this.p2.won, _this.p1.drawn],
-                        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                        backgroundColor: ["rgb(218 41 28)", "rgb(0,91,158)", "rgb(255, 205, 86)"]
                     }],
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
@@ -192,7 +192,7 @@ var app = new Vue({
                 data: {
                     datasets: [{
                         data: [_this.p1.goals, _this.p2.goals],
-                        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"]
+                        backgroundColor: ["rgb(218 41 28)", "rgb(0,91,158)"]
                     }],
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
