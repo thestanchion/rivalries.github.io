@@ -253,7 +253,8 @@ const app = new Vue({
             let i,
                 streakholder = '',
                 p1Count = 0,
-                p2Count = 0;
+                p2Count = 0,
+                longest = 0;
 
             for ( i in _this.selectedRivalry.results ) {
                 let result = _this.selectedRivalry.results[i];
@@ -267,9 +268,15 @@ const app = new Vue({
                     p1Count =  0;
                     p2Count++;
                 }
+
+                if ( p1Count > longest ) {
+                    longest = p1Count;
+                } else if ( p2Count > longest ) {
+                    longest = p2Count;
+                }
             }
             console.log({p1Count, p2Count});
-            return `Longest streak: ${streakholder} - ${p1Count > p2Count ? p1Count : p2Count} games`;
+            return `Longest streak: ${ streakholder } - ${ longest } games`;
         },
         getStreak:function() {
             const _this = this;
@@ -286,7 +293,7 @@ const app = new Vue({
 
                 if ( result.player1 > result.player2 ) {
                     if ( p2Count > 0 ) {
-                        return `Current streak: ${streakholder} - ${p2Count} games`;
+                        return `Current streak: ${ streakholder } - ${ p2Count } games`;
                     }
 
                     streakholder = _this.selectedRivalry.player1;
@@ -296,7 +303,7 @@ const app = new Vue({
                         return `Current streak: ${streakholder} - ${p1Count} games`;
                     }
 
-                    streakholder = _this.selectedRivalry.player1;
+                    streakholder = _this.selectedRivalry.player2;
                     p2Count++;
                 }
             }
