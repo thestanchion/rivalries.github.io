@@ -25,6 +25,16 @@
             margin-bottom: 3rem;
             background-color: $streak;
         }
+
+        &--highStreak {
+            margin-bottom: 3rem;
+            background-color: $highStreak;
+        }
+    }
+
+    &__streaks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     &__draws {

@@ -241,7 +241,7 @@ const app = new Vue({
             let arr = _.orderBy( results, 'date', 'desc' );
             return arr;
         },
-        getStreak:function() {
+        getHighStreak:function() {
             const _this = this;
 
             let i,
@@ -264,6 +264,36 @@ const app = new Vue({
             }
             console.log({p1Count, p2Count});
             return `Longest streak: ${streakholder} - ${p1Count > p2Count ? p1Count : p2Count} games`;
+        },
+        getStreak:function() {
+            const _this = this;
+
+            let i,
+                streakholder = '',
+                p1Count = 0,
+                p2Count = 0;
+
+            let reversedResults = _.orderBy( _this.selectedRivalry.results, 'date', 'desc' );
+
+            for ( i in reversedResults ) {
+                let result = reversedResults[i];
+
+                if ( result.player1 > result.player2 ) {
+                    if ( p2Count > 0 ) {
+                        return `Current streak: ${streakholder} - ${p2Count} games`;
+                    }
+
+                    streakholder = _this.selectedRivalry.player1;
+                    p1Count++;
+                } else if ( result.player2 > result.player1 ) {
+                    if ( p1Count > 0 ) {
+                        return `Current streak: ${streakholder} - ${p1Count} games`;
+                    }
+
+                    streakholder = _this.selectedRivalry.player1;
+                    p2Count++;
+                }
+            }
         }
     },
     created: function() {

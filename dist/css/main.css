@@ -673,6 +673,12 @@ select {
     .rivalry__stat--streak {
       margin-bottom: 3rem;
       background-color: #f7f756; }
+    .rivalry__stat--highStreak {
+      margin-bottom: 3rem;
+      background-color: #8dc63f; }
+  .rivalry__streaks {
+    display: grid;
+    grid-template-columns: 1fr 1fr; }
   .rivalry__draws {
     display: block;
     font-size: 1.1rem; }

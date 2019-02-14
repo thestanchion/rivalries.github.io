@@ -52,14 +52,17 @@
                     </table>
                 </div>
 
+                <div class="rivalry__streaks">
+                    <div class="rivalry__stat rivalry__stat--highStreak" v-if="selectedRivalry.results">{{ getHighStreak() }}</div>
+                    <div class="rivalry__stat rivalry__stat--streak" v-if="selectedRivalry.results">{{ getStreak() }}</div>
+                </div>
+
                 <form class="rivalry__addResult" v-if="selectedRivalry.player1">
                     <label for="player1">{{ selectedRivalry.player1 }}</label>
                     <input type="number" name="player1" v-model="p1Score" /> - <input type="number" name="player2" v-model="p2Score" />
                     <label for="player2">{{ selectedRivalry.player2 }}</label>
                     <input type="submit" value="Add" v-on:click="addResult" />
                 </form>
-
-                <div class="rivalry__stat rivalry__stat--streak" v-if="selectedRivalry.results">{{ getStreak() }}</div>
 
                 <ol class="rivalry__results" v-if="selectedRivalry.results">
                     <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
