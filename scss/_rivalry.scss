@@ -10,6 +10,22 @@
         width: 33.3%;
     }
 
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+
+        img {
+            height: 10rem;
+            width: auto;
+        }
+
+        span {
+            margin: 0 3rem;
+        }
+    }
+
     &__stats {
         margin-bottom: 3rem;
         border-radius: 6px;

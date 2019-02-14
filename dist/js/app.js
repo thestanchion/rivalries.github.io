@@ -93,6 +93,12 @@ var app = new Vue({
                 _this.bakePie();
             });
         },
+        getEmoji: function getEmoji(player) {
+            var _this = this;
+            var name = player.toLowerCase();
+
+            return "./img/" + name + ".png";
+        },
         buildStats: function buildStats(player) {
             var _this = this;
 

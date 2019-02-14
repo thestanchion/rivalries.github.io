@@ -30,7 +30,11 @@
                         <span class="rivalry__stat rivalry__versus u-highlight" v-cloak :style="vsPos">vs</span>
                     </div>
                     
-                    <div class="rivalry__stat">Played: {{ gamesPlayed() }}</div>
+                    <div class="rivalry__header rivalry__stat">
+                        <img :src="getEmoji( selectedRivalry.player1 )" />
+                        <span>Played: {{ gamesPlayed() }}</span>
+                        <img :src="getEmoji( selectedRivalry.player2 )" />
+                    </div>
 
                     <table>
                         <tr>

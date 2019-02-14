@@ -662,6 +662,19 @@ select {
     width: 100%; }
   .rivalry td {
     width: 33.3%; }
+  .rivalry__header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    font-size: 3rem; }
+    .rivalry__header img {
+      height: 10rem;
+      width: auto; }
+    .rivalry__header span {
+      margin: 0 3rem; }
   .rivalry__stats {
     margin-bottom: 3rem;
     border-radius: 6px;
