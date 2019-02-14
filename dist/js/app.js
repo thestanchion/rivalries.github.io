@@ -300,6 +300,8 @@ var app = new Vue({
 
                     streakholder = _this.selectedRivalry.player2;
                     p2Count++;
+                } else if (result.player1 === result.player2) {
+                    return "Latest game was drawn. No current win streak.";
                 }
             }
         }
