@@ -695,11 +695,12 @@ select {
   .rivalry__stat {
     padding: 1rem;
     background-color: #eee; }
+    .rivalry__stat--streak, .rivalry__stat--highStreak {
+      -ms-flex: 1;
+          flex: 1; }
     .rivalry__stat--streak {
-      margin-bottom: 3rem;
       background-color: #f7f756; }
     .rivalry__stat--highStreak {
-      margin-bottom: 3rem;
       background-color: #8dc63f; }
     .rivalry__stat--biggest-win span + span {
       margin-left: 30rem; }
@@ -730,8 +731,11 @@ select {
     .rivalry__stat-p2 {
       background-color: #005b9e; }
   .rivalry__streaks {
-    display: grid;
-    grid-template-columns: 1fr 1fr; }
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 3rem;
+    border-radius: 4px;
+    overflow: hidden; }
   .rivalry__draws {
     display: block;
     font-size: 1.1rem; }
