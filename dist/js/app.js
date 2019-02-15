@@ -64,6 +64,11 @@ var app = new Vue({
 
             return "width: " + width + "%;";
         },
+        getStatStyle: function getStatStyle(statTotal, player) {
+            var width = player / statTotal * 100;
+
+            return "width: " + width + "%;";
+        },
         addRivalry: function addRivalry(event) {
             var _this = this;
             event.preventDefault();
@@ -89,9 +94,9 @@ var app = new Vue({
             _this.p2 = _this.buildStats('player2');
             _this.getStreak();
 
-            setTimeout(function () {
-                _this.bakePie();
-            });
+            // setTimeout( function() {
+            //     _this.bakePie();
+            // });
         },
         getEmoji: function getEmoji(player) {
             var _this = this;
@@ -209,6 +214,22 @@ var app = new Vue({
                     total += result.player1;
                 } else if (player === 'player2') {
                     total += result.player2;
+                }
+            }
+            return total;
+        },
+        cleanSheets: function cleanSheets(player) {
+            var _this = this;
+            var total = 0;
+            var i = void 0;
+
+            for (i in _this.selectedRivalry.results) {
+                var result = _this.selectedRivalry.results[i];
+
+                if (player === 'player1' && result.player2 === 0) {
+                    total++;
+                } else if (player === 'player2' && result.player1 === 0) {
+                    total++;
                 }
             }
             return total;

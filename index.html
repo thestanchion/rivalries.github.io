@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>FIFA Rivalries</title>
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="dist/css/main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#e5127d">
@@ -36,19 +37,61 @@
                         <img :src="getEmoji( selectedRivalry.player2 )" />
                     </div>
 
-                    <div class="rivalry__header rivalry__stat">
-                        <span>{{ goalsPerGame('player1') }}</span>
-                        <span>Avg Goals per Game</span>
-                        <span>{{ goalsPerGame('player2') }}</span>
+                    <div class="rivalry__stat">
+                        <h3 class="c-heading--stat">Wins</h3>
+                        <div class="rivalry__stat-row">
+                            <span>{{ p1.won }}</span>
+                            <span class="rivalry__stat-row-inner">
+                                <span :style="getStatStyle( p1.won + p2.won, p1.won )" class="rivalry__stat-p1"></span>
+                                <span :style="getStatStyle( p1.won + p2.won, p2.won )" class="rivalry__stat-p2"></span>
+                            </span>
+                            <span>{{ p2.won }}</span>
+                        </div>
                     </div>
 
-                    <div class="rivalry__header rivalry__stat">
+                    <div class="rivalry__stat">
+                        <h3 class="c-heading--stat">Goals</h3>
+                        <div class="rivalry__stat-row">
+                            <span>{{ p1.goals }}</span>
+                            <span class="rivalry__stat-row-inner">
+                                <span :style="getStatStyle( p1.goals + p2.goals, p1.goals )" class="rivalry__stat-p1"></span>
+                                <span :style="getStatStyle( p1.goals + p2.goals, p2.goals )" class="rivalry__stat-p2"></span>
+                            </span>
+                            <span>{{ p2.goals }}</span>
+                        </div>
+                    </div>
+
+                    <div class="rivalry__stat">
+                        <h3 class="c-heading--stat">Clean Sheets</h3>
+                        <div class="rivalry__stat-row">
+                            <span>{{ cleanSheets('player1') }}</span>
+                            <span class="rivalry__stat-row-inner">
+                                <span :style="getStatStyle( cleanSheets('player1') + cleanSheets('player2'), cleanSheets('player1') )" class="rivalry__stat-p1"></span>
+                                <span :style="getStatStyle( cleanSheets('player1') + cleanSheets('player2'), cleanSheets('player2') )" class="rivalry__stat-p2"></span>
+                            </span>
+                            <span>{{ cleanSheets('player2') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="rivalry__stat">
+                        <h3 class="c-heading--stat">Avg Goals per Game</h3>
+                        <div class="rivalry__stat-row">
+                            <span>{{ goalsPerGame('player1') }}</span>
+                            <span class="rivalry__stat-row-inner">
+                                <span :style="getStatStyle( goalsPerGame('player1') + goalsPerGame('player2'), goalsPerGame('player1') )" class="rivalry__stat-p1"></span>
+                                <span :style="getStatStyle( goalsPerGame('player1') + goalsPerGame('player2'), goalsPerGame('player2') )" class="rivalry__stat-p2"></span>
+                            </span>
+                            <span>{{ goalsPerGame('player2') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="rivalry__stat rivalry__stat--biggest-win">
+                        <h3 class="c-heading--stat">Biggest Win</h3>
                         <span>{{ biggestWin('player1') }}</span>
-                        <span>Biggest Win</span>
                         <span>{{ biggestWin('player2') }}</span>
                     </div>
 
-                    <table>
+                    <!-- <table>
                         <tr>
                             <td class="rivalry__stat">Wins</td>
                             <td class="rivalry__stat">Goals</td>
@@ -65,7 +108,7 @@
                                 </div>
                             </td>
                         </tr>
-                    </table>
+                    </table> -->
                 </div>
 
                 <div class="rivalry__streaks">
@@ -82,7 +125,7 @@
 
                 <ol class="rivalry__results" v-if="selectedRivalry.results">
                     <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
-                        {{ selectedRivalry.player1 }} <span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span> {{ selectedRivalry.player2 }}
+                        {{ selectedRivalry.player1 }} <span class="scorebox"><span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span></span> {{ selectedRivalry.player2 }}
                         <span class="rivalry__date">{{ fixtureDate( result.date ) }} <a href="#x" v-on:click="deleteResult( $event, result )">x</a></span>
                     </li>
                 </ol>
