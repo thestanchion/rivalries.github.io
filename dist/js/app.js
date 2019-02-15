@@ -286,7 +286,15 @@ var app = new Vue({
             for (i in reversedResults) {
                 var result = reversedResults[i];
 
-                if (result.player1 > result.player2) {
+                if (result.player1 === result.player2 && p1Count === 0 && p2Count === 0) {
+                    return "Latest game was drawn. No current win streak.";
+                } else if (result.player1 === result.player2) {
+                    if (p2Count > p1Count) {
+                        return "Current streak: " + streakholder + " - " + p2Count + " games";
+                    } else if (p1Count > p2Count) {
+                        return "Current streak: " + streakholder + " - " + p1Count + " games";
+                    }
+                } else if (result.player1 > result.player2) {
                     if (p2Count > 0) {
                         return "Current streak: " + streakholder + " - " + p2Count + " games";
                     }
@@ -300,8 +308,6 @@ var app = new Vue({
 
                     streakholder = _this.selectedRivalry.player2;
                     p2Count++;
-                } else if (result.player1 === result.player2) {
-                    return "Latest game was drawn. No current win streak.";
                 }
             }
         }
