@@ -275,19 +275,22 @@ var app = new Vue({
             });
             _this.getNewData();
         },
-        deleteResult: function deleteResult(event, index) {
+        deleteResult: function deleteResult(event, result) {
             var _this = this;
             event.preventDefault();
 
-            var key = Object.keys(_this.selectedRivalry.results, index);
-
-            var matchRef = _this.firebase.ref('/rivalries/' + _this.fbIndex + '/results/' + key);
+            var matchRef = _this.firebase.ref('/rivalries/' + _this.fbIndex + '/results/' + result.key);
 
             matchRef.remove();
             _this.getNewData();
         },
         orderedResults: function orderedResults(results) {
+            for (var result in results) {
+                results[result].key = result;
+            }
+
             var arr = _.orderBy(results, 'date', 'desc');
+
             return arr;
         },
         getHighStreak: function getHighStreak() {

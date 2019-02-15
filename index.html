@@ -83,7 +83,7 @@
                 <ol class="rivalry__results" v-if="selectedRivalry.results">
                     <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
                         {{ selectedRivalry.player1 }} <span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span> {{ selectedRivalry.player2 }}
-                        <span class="rivalry__date">{{ fixtureDate( result.date ) }} <!--<a href="#x" v-on:click="deleteResult( $event, index )">x</a>--></span>
+                        <span class="rivalry__date">{{ fixtureDate( result.date ) }} <a href="#x" v-on:click="deleteResult( $event, result )">x</a></span>
                     </li>
                 </ol>
             </section>
