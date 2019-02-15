@@ -101,6 +101,7 @@ var app = new Vue({
         },
         buildStats: function buildStats(player) {
             var _this = this;
+            var thisPlayer = _this[player];
 
             var gf = _this.getGoalsFor(player);
 
@@ -114,6 +115,53 @@ var app = new Vue({
             var _this = this;
 
             return Object.keys(_this.selectedRivalry.results).length;
+        },
+        goalsPerGame: function goalsPerGame(player) {
+            var _this = this;
+            var gf = _this.getGoalsFor(player);
+            var goalsPerGameNum = gf / Object.keys(_this.selectedRivalry.results).length;
+
+            return Math.round(goalsPerGameNum * 100) / 100;;
+        },
+        biggestWin: function biggestWin(player) {
+            var _this = this;
+            var i = void 0,
+                playerScoreDiff = 0,
+                playerGoals = 0,
+                playerBiggestResult = void 0,
+                returnString = void 0;
+
+            for (i in _this.selectedRivalry.results) {
+                var result = _this.selectedRivalry.results[i];
+
+                if (player === 'player1') {
+                    if (result.player1 > result.player2) {
+                        var tempScoreDiff = result.player1 - result.player2;
+                        var tempPlayerGoals = result.player1;
+                    }
+                } else if (player === 'player2') {
+                    if (result.player2 > result.player1) {
+                        var tempScoreDiff = result.player2 - result.player1;
+                        var tempPlayerGoals = result.player2;
+                    }
+                }
+
+                if (tempScoreDiff > playerScoreDiff) {
+                    playerBiggestResult = result;
+                    playerScoreDiff = tempScoreDiff;
+                    playerGoals = tempPlayerGoals;
+                } else if (tempScoreDiff === playerScoreDiff) {
+                    if (tempPlayerGoals > playerGoals) {
+                        playerBiggestResult = result;
+                        playerScoreDiff = tempScoreDiff;
+                        playerGoals = tempPlayerGoals;
+                    }
+                }
+            }
+
+            returnString = player === 'player1' ? playerBiggestResult.player1 + " - " + playerBiggestResult.player2 : playerBiggestResult.player1 + " - " + playerBiggestResult.player2;
+
+            return returnString;
         },
         getWins: function getWins(player) {
             var _this = this;

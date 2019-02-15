@@ -29,11 +29,23 @@
                         <span class="rivalry__stat rivalry__player2" :style="getStyle('p2')">{{ selectedRivalry.player2 }}</span>
                         <span class="rivalry__stat rivalry__versus u-highlight" v-cloak :style="vsPos">vs</span>
                     </div>
-                    
+
                     <div class="rivalry__header rivalry__stat">
                         <img :src="getEmoji( selectedRivalry.player1 )" />
                         <span>Played: {{ gamesPlayed() }}</span>
                         <img :src="getEmoji( selectedRivalry.player2 )" />
+                    </div>
+
+                    <div class="rivalry__header rivalry__stat">
+                        <span>{{ goalsPerGame('player1') }}</span>
+                        <span>Avg Goals per Game</span>
+                        <span>{{ goalsPerGame('player2') }}</span>
+                    </div>
+
+                    <div class="rivalry__header rivalry__stat">
+                        <span>{{ biggestWin('player1') }}</span>
+                        <span>Biggest Win</span>
+                        <span>{{ biggestWin('player2') }}</span>
                     </div>
 
                     <table>

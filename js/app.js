@@ -8,7 +8,7 @@ var fbConfig = {
     messagingSenderId: "576287936202"
  };
  firebase.initializeApp(fbConfig);
- 
+
 const app = new Vue({
     el: "#app",
     data: {
@@ -99,6 +99,7 @@ const app = new Vue({
          },
          buildStats: function( player ) {
             const _this = this;
+            let thisPlayer = _this[player];
 
             let gf = _this.getGoalsFor( player );
 
@@ -112,6 +113,53 @@ const app = new Vue({
             const _this = this;
 
             return Object.keys( _this.selectedRivalry.results ).length;
+         },
+         goalsPerGame: function( player ) {
+             const _this = this;
+             let gf = _this.getGoalsFor( player );
+             let goalsPerGameNum = gf / Object.keys( _this.selectedRivalry.results ).length;
+
+             return Math.round(goalsPerGameNum * 100) / 100;;
+         },
+         biggestWin: function( player ) {
+             const _this = this;
+             let i,
+                playerScoreDiff = 0,
+                playerGoals = 0,
+                playerBiggestResult,
+                returnString;
+
+             for ( i in _this.selectedRivalry.results ) {
+                 let result = _this.selectedRivalry.results[i];
+
+                 if( player === 'player1' ) {
+                     if ( result.player1 > result.player2 ) {
+                         var tempScoreDiff = result.player1 - result.player2;
+                         var tempPlayerGoals = result.player1;
+                     }
+                 } else if( player === 'player2' ) {
+                     if ( result.player2 > result.player1 ) {
+                         var tempScoreDiff = result.player2 - result.player1;
+                         var tempPlayerGoals = result.player2;
+                     }
+                 }
+
+                  if( tempScoreDiff > playerScoreDiff ) {
+                      playerBiggestResult = result;
+                      playerScoreDiff = tempScoreDiff;
+                      playerGoals = tempPlayerGoals;
+                  } else if ( tempScoreDiff === playerScoreDiff ) {
+                      if( tempPlayerGoals > playerGoals ) {
+                          playerBiggestResult = result;
+                          playerScoreDiff = tempScoreDiff;
+                          playerGoals = tempPlayerGoals;
+                      }
+                  }
+             }
+
+             returnString = player === 'player1' ? `${playerBiggestResult.player1} - ${playerBiggestResult.player2}` : `${playerBiggestResult.player1} - ${playerBiggestResult.player2}`
+
+             return returnString;
          },
          getWins: function( player ) {
              const _this = this;
@@ -183,7 +231,7 @@ const app = new Vue({
                         data: [_this.p1.won, _this.p2.won, _this.p1.drawn],
                         backgroundColor :["rgb(218, 41, 28)","rgb(0,91,158)","rgb(255, 205, 86)"]
                     }],
-                
+
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
                         _this.selectedRivalry.player1,
@@ -206,7 +254,7 @@ const app = new Vue({
                         data: [_this.p1.goals, _this.p2.goals],
                         backgroundColor :["rgb(218, 41, 28)","rgb(0,91,158)"]
                     }],
-                
+
                     // These labels appear in the legend and in the tooltips when hovering different arcs
                     labels: [
                         _this.selectedRivalry.player1,
