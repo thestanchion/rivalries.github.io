@@ -233,7 +233,7 @@ const app = new Vue({
             return total;
         },
         fixtureDate: function( date ) {
-            return moment(date).format(' Do MMMM YYYY');
+            return moment(date).format(' DD-MM-YY');
         },
         bakePie: function() {
             const _this = this;
