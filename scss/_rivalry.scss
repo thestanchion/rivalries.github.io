@@ -199,10 +199,11 @@
     &__addResult {
         margin-bottom: 3rem;
 
-        input[type=number] {
+        input[type=text] {
             width: 5rem;
             padding: .6rem 0;
             text-align: center;
+            border: 1px solid #ddd;
         }
 
         input[type=submit] {
@@ -214,6 +215,10 @@
             color: #fff;
             text-align: center;
             border-radius: 4px;
+
+            &:disabled {
+                background-color: #eee;
+            }
         }
     }
 }

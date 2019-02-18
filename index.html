@@ -118,14 +118,14 @@
 
                 <form class="rivalry__addResult" v-if="selectedRivalry.player1">
                     <label for="player1">{{ selectedRivalry.player1 }}</label>
-                    <input type="number" name="player1" v-model="p1Score" /> - <input type="number" name="player2" v-model="p2Score" />
+                    <input type="text" name="player1" v-model="p1Score" /> - <input type="text" name="player2" v-model="p2Score" />
                     <label for="player2">{{ selectedRivalry.player2 }}</label>
-                    <input type="submit" value="Add" v-on:click="addResult" />
+                    <input type="submit" value="Add" v-on:click="addResult" :disabled="!p1Score || !p2Score" />
                 </form>
 
                 <ol class="rivalry__results" v-if="selectedRivalry.results">
                     <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
-                        {{ selectedRivalry.player1 }} <span class="scorebox"><span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span></span> {{ selectedRivalry.player2 }}
+                        <span v-bind:class="{ 'u-highlight': result.player1 > result.player2, 'u-lowlight': result.player2 > result.player1 }">{{ selectedRivalry.player1 }}</span> <span class="scorebox"><span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span></span> <span v-bind:class="{ 'u-highlight': result.player2 > result.player1, 'u-lowlight': result.player1 > result.player2 }">{{ selectedRivalry.player2 }}</span>
                         <span class="rivalry__date">{{ fixtureDate( result.date ) }} <a href="#x" v-on:click="deleteResult( $event, result )">x</a></span>
                     </li>
                 </ol>

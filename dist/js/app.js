@@ -27,8 +27,8 @@ var app = new Vue({
             won: 0,
             gf: 0
         },
-        p1Score: 0,
-        p2Score: 0,
+        p1Score: '',
+        p2Score: '',
         newP1: '',
         newP2: '',
         vsPos: 0
@@ -381,6 +381,12 @@ var app = new Vue({
                     streakholder = _this.selectedRivalry.player2;
                     p2Count++;
                 }
+            }
+        },
+        didP1Win: function didP1Win(result) {
+
+            if (result.player1 > result.player2) {
+                return true;
             }
         }
     },

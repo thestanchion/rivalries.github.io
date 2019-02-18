@@ -369,6 +369,9 @@ th {
   background-color: #da291c !important;
   color: #fff !important; }
 
+.u-lowlight {
+  color: #bbb; }
+
 @font-face {
   font-family: "Antonio";
   src: url("/fonts/antonio-bold-webfont.woff2") format("woff2"), url("/fonts/antonio-bold-webfont.woff") format("woff");
@@ -792,10 +795,11 @@ select {
     text-transform: uppercase; }
   .rivalry__addResult {
     margin-bottom: 3rem; }
-    .rivalry__addResult input[type=number] {
+    .rivalry__addResult input[type=text] {
       width: 5rem;
       padding: .6rem 0;
-      text-align: center; }
+      text-align: center;
+      border: 1px solid #ddd; }
     .rivalry__addResult input[type=submit] {
       display: block;
       width: 14rem;
@@ -805,3 +809,5 @@ select {
       color: #fff;
       text-align: center;
       border-radius: 4px; }
+      .rivalry__addResult input[type=submit]:disabled {
+        background-color: #eee; }
