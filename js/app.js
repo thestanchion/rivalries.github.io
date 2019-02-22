@@ -35,8 +35,8 @@ const app = new Vue({
         getData: function() {
             const _this = this;
             _this.firebase.ref('/rivalries').once('value').then(function(snapshot) {
-               _this.rivalries = snapshot.val();
-               _this.viewRivalry( _this.rivalries[ _this.fbIndex ], _this.fbIndex );
+                _this.rivalries = _this.rivalryKeys( snapshot.val() );
+                _this.viewRivalry( _this.rivalries[ _this.fbIndex ] );
             });
          },
          getNewData: function() {
@@ -45,11 +45,23 @@ const app = new Vue({
                 _this.rivalries = snapshot.val();
 
                 setTimeout( function() {
-                    _this.viewRivalry( _this.rivalries[ _this.fbIndex ], _this.fbIndex );
+                    _this.rivalryKeys();
+                    _this.viewRivalry( _this.rivalries[ _this.fbIndex ] );
                     _this.p1Score = 0;
                     _this.p2Score = 0;
                 });
             });
+        },
+        rivalryKeys: function( data ) {
+            console.log( data );
+
+            for ( var rivalry in data ){
+                data[rivalry].key = rivalry;
+            }
+
+            console.log( data );
+
+            return data;
         },
         getStyle: function( player ) {
             const _this = this;
@@ -80,14 +92,14 @@ const app = new Vue({
             _this.newP1 = '';
             _this.newP2 = '';
          },
-         viewRivalry: function( rivalry, index ) {
+         viewRivalry: function( rivalry ) {
             const _this = this;
 
             _this.selectedRivalry = rivalry;
             this.$set( _this.selectedRivalry, 'results', rivalry.results);
 
 
-            _this.fbIndex = index;
+            _this.fbIndex = _this.selectedRivalry.key;
             _this.p1 = _this.buildStats( 'player1' );
             _this.p2 = _this.buildStats( 'player2' );
             _this.getStreak();
@@ -162,7 +174,11 @@ const app = new Vue({
                   }
              }
 
-             returnString = player === 'player1' ? `${playerBiggestResult.player1} - ${playerBiggestResult.player2}` : `${playerBiggestResult.player1} - ${playerBiggestResult.player2}`
+            if ( !playerBiggestResult ) {
+                returnString = 'No wins! You suck!';
+            } else {
+                returnString = player === 'player1' ? `${playerBiggestResult.player1} - ${playerBiggestResult.player2}` : `${playerBiggestResult.player1} - ${playerBiggestResult.player2}`
+            }
 
              return returnString;
          },
@@ -235,61 +251,6 @@ const app = new Vue({
         fixtureDate: function( date ) {
             return moment(date).format(' DD-MM-YY');
         },
-        bakePie: function() {
-            const _this = this;
-
-            if ( !_this.selectedRivalry.results ) {
-                return;
-            }
-
-            const winsCtx = document.getElementById('winsPie').getContext('2d');
-            const goalsCtx = document.getElementById('goalsPie').getContext('2d');
-
-            const winsChart = new Chart(winsCtx, {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: [_this.p1.won, _this.p2.won, _this.p1.drawn],
-                        backgroundColor :["rgb(218, 41, 28)","rgb(0,91,158)","rgb(255, 205, 86)"]
-                    }],
-
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        _this.selectedRivalry.player1,
-                        _this.selectedRivalry.player2,
-                        'Draws'
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    responsiveAnimationDuration: 0,
-                    maintainAspectRatio: true,
-                    cutoutPercentage: 65
-                }
-            });
-
-            const goalsChart = new Chart(goalsCtx, {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: [_this.p1.goals, _this.p2.goals],
-                        backgroundColor :["rgb(218, 41, 28)","rgb(0,91,158)"]
-                    }],
-
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        _this.selectedRivalry.player1,
-                        _this.selectedRivalry.player2,
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    responsiveAnimationDuration: 0,
-                    maintainAspectRatio: true,
-                    cutoutPercentage: 65
-                }
-            });
-        },
         addResult: function(event) {
             const _this = this;
             event.preventDefault();
@@ -348,7 +309,7 @@ const app = new Vue({
                 }
             }
             console.log({p1Count, p2Count});
-            return `Longest streak: ${ streakholder } - ${ longest } games`;
+            return `Longest streak: <span>${ streakholder } - ${ longest } games</span>`;
         },
         getStreak:function() {
             const _this = this;
@@ -367,20 +328,20 @@ const app = new Vue({
                     return `Latest game was drawn. No current win streak.`;
                 } else if ( result.player1 === result.player2 ) {
                     if ( p2Count > p1Count ) {
-                        return `Current streak: ${ streakholder } - ${ p2Count } games`;
+                        return `Current streak: <span>${ streakholder } - ${ p2Count } games</span>`;
                     } else if ( p1Count > p2Count ) {
-                        return `Current streak: ${ streakholder } - ${ p1Count } games`;
+                        return `Current streak: <span>${ streakholder } - ${ p1Count } games</span>`;
                     }
                 } else if ( result.player1 > result.player2 ) {
                     if ( p2Count > 0 ) {
-                        return `Current streak: ${ streakholder } - ${ p2Count } games`;
+                        return `Current streak: <span>${ streakholder } - ${ p2Count } games</span>`;
                     }
 
                     streakholder = _this.selectedRivalry.player1;
                     p1Count++;
                 } else if ( result.player2 > result.player1 ) {
                     if ( p1Count > 0 ) {
-                        return `Current streak: ${streakholder} - ${p1Count} games`;
+                        return `Current streak: <span>${streakholder} - ${p1Count} games</span>`;
                     }
 
                     streakholder = _this.selectedRivalry.player2;

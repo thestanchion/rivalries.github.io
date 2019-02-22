@@ -652,15 +652,15 @@ select {
 
 .app {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 3fr;
   grid-gap: 2rem;
-  margin: 2rem; }
-  @media screen and (max-width: 800px) {
+  margin: 2rem;
+  max-width: 90rem; }
+  @media screen and (max-width: 700px) {
     .app {
       grid-template-columns: 1fr; } }
 
 .listing {
-  display: none;
   list-style: none; }
 
 .rivalry {
@@ -738,7 +738,12 @@ select {
     display: flex;
     margin-bottom: 3rem;
     border-radius: 4px;
-    overflow: hidden; }
+    font-weight: 900;
+    overflow: hidden;
+    text-transform: uppercase; }
+    .rivalry__streaks span {
+      display: block;
+      font-weight: 400; }
   .rivalry__draws {
     display: block;
     font-size: 1.1rem; }

@@ -113,7 +113,14 @@
         display: flex;
         margin-bottom: 3rem;
         border-radius: 4px;
+        font-weight: 900;
         overflow: hidden;
+        text-transform: uppercase;
+
+        span {
+            display: block;
+            font-weight: 400;
+        }
     }
 
     &__draws {

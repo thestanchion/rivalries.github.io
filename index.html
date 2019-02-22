@@ -26,9 +26,9 @@
                 <div class="rivalry__stats" v-if="selectedRivalry.results">
 
                     <div class="rivalry__players">
-                        <span class="rivalry__stat rivalry__player1" :style="getStyle('p1')">{{ selectedRivalry.player1 }}</span>
-                        <span class="rivalry__stat rivalry__player2" :style="getStyle('p2')">{{ selectedRivalry.player2 }}</span>
-                        <span class="rivalry__stat rivalry__versus u-highlight" v-cloak :style="vsPos">vs</span>
+                        <span class="rivalry__stat rivalry__player1" :style="getStyle('p1')" v-if="p1.won > 0">{{ p2.won > 0 ? selectedRivalry.player1 : selectedRivalry.player1 + ' vs ' + selectedRivalry.player2 }}</span>
+                        <span class="rivalry__stat rivalry__player2" :style="getStyle('p2')" v-if="p2.won > 0">{{ p1.won > 0 ? selectedRivalry.player2 : selectedRivalry.player1 + ' vs ' + selectedRivalry.player2 }}</span>
+                        <span class="rivalry__stat rivalry__versus u-highlight" v-cloak :style="vsPos" v-if="p1.won > 0 && p2.won > 0">vs</span>
                     </div>
 
                     <div class="rivalry__header rivalry__stat">
@@ -90,30 +90,11 @@
                         <span>{{ biggestWin('player1') }}</span>
                         <span>{{ biggestWin('player2') }}</span>
                     </div>
-
-                    <!-- <table>
-                        <tr>
-                            <td class="rivalry__stat">Wins</td>
-                            <td class="rivalry__stat">Goals</td>
-                        </tr>
-                        <tr>
-                            <td class="rivalry__stat">
-                                <div class="rivalry__pieWrap">
-                                    <canvas id="winsPie" class="rivalry__pie" width="400" height="400"></canvas>
-                                </div>
-                            </td>
-                            <td class="rivalry__stat">
-                                <div class="rivalry__pieWrap">
-                                    <canvas id="goalsPie" class="rivalry__pie" width="400" height="400"></canvas>
-                                </div>
-                            </td>
-                        </tr>
-                    </table> -->
                 </div>
 
                 <div class="rivalry__streaks">
-                    <div class="rivalry__stat rivalry__stat--highStreak" v-if="selectedRivalry.results">{{ getHighStreak() }}</div>
-                    <div class="rivalry__stat rivalry__stat--streak" v-if="selectedRivalry.results">{{ getStreak() }}</div>
+                    <div class="rivalry__stat rivalry__stat--highStreak" v-if="selectedRivalry.results" v-html="getHighStreak()"></div>
+                    <div class="rivalry__stat rivalry__stat--streak" v-if="selectedRivalry.results" v-html="getStreak()"></div>
                 </div>
 
                 <form class="rivalry__addResult" v-if="selectedRivalry.player1">
