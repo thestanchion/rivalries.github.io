@@ -44,10 +44,9 @@ body {
   margin: 0 auto;
 }
 p {
+    display: block;
   margin: 0rem 0rem 2rem 0rem;
   line-height: 1.8;
-  vertical-align: top;
-  display: block;
   clear: both;
 }
 
@@ -263,7 +262,7 @@ select {
   border-style: solid;
 }
 select {
-  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
   white-space: nowrap;
   padding-right: rem-calc(45);

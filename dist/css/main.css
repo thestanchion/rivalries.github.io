@@ -423,10 +423,9 @@ body {
   margin: 0 auto; }
 
 p {
+  display: block;
   margin: 0rem 0rem 2rem 0rem;
   line-height: 1.8;
-  vertical-align: top;
-  display: block;
   clear: both; }
 
 p > img {
@@ -606,8 +605,6 @@ select {
 
 select {
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
   cursor: pointer;
   white-space: nowrap;
   padding-right: 4.5rem;
