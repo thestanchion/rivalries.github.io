@@ -339,6 +339,10 @@ const app = new Vue({
 
                     streakholder = _this.selectedRivalry.player1;
                     p1Count++;
+
+                    if ( p2Count === 0 ) {
+                        return `Current streak: <span>${ streakholder } - ${ p1Count } games</span>`;
+                    }
                 } else if ( result.player2 > result.player1 ) {
                     if ( p1Count > 0 ) {
                         return `Current streak: <span>${streakholder} - ${p1Count} games</span>`;
@@ -346,6 +350,10 @@ const app = new Vue({
 
                     streakholder = _this.selectedRivalry.player2;
                     p2Count++;
+
+                    if ( p1Count === 0 ) {
+                        return `Current streak: <span>${ streakholder } - ${ p2Count } games</span>`;
+                    }
                 }
             }
         },
