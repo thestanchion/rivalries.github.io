@@ -81,6 +81,12 @@ var app = new Vue({
 
             return "width: " + width + "%;";
         },
+        selectedItem: function selectedItem(rivalry) {
+            var _this = this;
+            if (rivalry.key === _this.selectedRivalry.key) {
+                return "background-color: rgba(0,0,0,.5);";
+            }
+        },
         addRivalry: function addRivalry(event) {
             var _this = this;
             event.preventDefault();

@@ -79,6 +79,12 @@ const app = new Vue({
 
             return `width: ${ width }%;`;
         },
+        selectedItem: function( rivalry ) {
+            const _this = this;
+            if ( rivalry.key === _this.selectedRivalry.key ) {
+                return `background-color: rgba(0,0,0,.5);`;
+            }
+        },
         addRivalry( event ) {
             const _this = this;
             event.preventDefault();

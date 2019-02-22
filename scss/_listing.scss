@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-gap: 2rem;
-    margin: 2rem;
     max-width: 90rem;
 
     @media screen and (max-width: 700px) {
@@ -10,6 +9,37 @@
     }
 }
 
+.sidebar {
+    background-color: $sidebar;
+}
 .listing {
+    width: 100%;
+    margin: 0;
+    padding: 3rem 0 0;
     list-style: none;
+
+    @media only screen and (max-width: 700px) {
+        padding-top: 0;
+        text-align: center;
+    }
+
+    li {
+        margin: 0;
+
+        &:hover {
+            background-color: rgba( 0, 0, 0, .25 );
+        }
+    }
+
+    a {
+        display: block;
+        padding: 1rem 2rem;
+        color: $sidebar-text;
+        font-size: 1.8rem;
+        font-weight: 700;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }

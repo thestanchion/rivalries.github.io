@@ -363,10 +363,10 @@ th {
   display: none !important; }
 
 .u-highlight {
-  color: #da291c !important; }
+  color: #405189 !important; }
 
 .u-highlight-bg {
-  background-color: #da291c !important;
+  background-color: #f16649 !important;
   color: #fff !important; }
 
 .u-lowlight {
@@ -404,7 +404,7 @@ section {
   display: block; }
 
 html {
-  font: 62.5%/1.2 "Roboto", Arial, "Helvetica Neue", Helvetica, sans-serif, Georgia, serif;
+  font: 62.5%/1.2 "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif, Georgia, serif;
   word-wrap: break-word;
   overflow-x: hidden; }
 
@@ -413,8 +413,9 @@ body {
   width: 100%; }
 
 body {
-  color: #000;
-  font: normal 400 2rem/1.5 "Roboto", Arial, "Helvetica Neue", Helvetica, sans-serif, Georgia, serif; }
+  color: #333;
+  background-color: #f6f6f6;
+  font: normal 400 2rem/1.5 "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif, Georgia, serif; }
 
 .wrapper {
   width: 72rem;
@@ -436,7 +437,7 @@ li {
   margin-bottom: 0.8rem; }
 
 a {
-  color: #da291c;
+  color: #f16649;
   text-decoration: none; }
 
 a:hover {
@@ -485,9 +486,9 @@ code {
   white-space: -o-pre-wrap;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  background-color: #da291c;
+  background-color: #f16649;
   border: 0;
-  color: #000;
+  color: #333;
   font-size: 1.6rem;
   font-weight: normal; }
 
@@ -519,7 +520,7 @@ blockquote cite:before {
 hr {
   margin: 0.3rem 0;
   border: none;
-  border-top: 3px solid #da291c; }
+  border-top: 3px solid #f16649; }
 
 address {
   margin: 0 0 1.2rem 0;
@@ -625,14 +626,14 @@ select {
     height: 1.6rem;
     width: 1.6rem;
     border: 8px solid transparent;
-    border-top-color: #000; }
+    border-top-color: #333; }
 
 @media only screen and (max-width: 500px) {
   body {
     font-size: 1.6rem; } }
 
 .h1, h1, .h2, h2, .h3, h3, .h4, h4, .h5, h5, .h6, h6 {
-  font-family: "Roboto", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;
   line-height: 1.3;
   margin: 0 0 0.3rem;
   font-weight: normal; }
@@ -654,18 +655,44 @@ select {
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-gap: 2rem;
-  margin: 2rem;
   max-width: 90rem; }
   @media screen and (max-width: 700px) {
     .app {
       grid-template-columns: 1fr; } }
 
+.sidebar {
+  background-color: #405189; }
+
 .listing {
+  width: 100%;
+  margin: 0;
+  padding: 3rem 0 0;
   list-style: none; }
+  @media only screen and (max-width: 700px) {
+    .listing {
+      padding-top: 0;
+      text-align: center; } }
+  .listing li {
+    margin: 0; }
+    .listing li:hover {
+      background-color: rgba(0, 0, 0, 0.25); }
+  .listing a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #eee;
+    font-size: 1.8rem;
+    font-weight: 700; }
+    .listing a:hover {
+      text-decoration: none; }
 
 .rivalry {
+  margin: 3rem 2rem 2rem 0;
   font-size: 1.6rem;
   text-align: center; }
+  @media only screen and (max-width: 700px) {
+    .rivalry {
+      margin-top: 0;
+      margin-left: 2rem; } }
   .rivalry table {
     width: 100%; }
   .rivalry td {
@@ -692,19 +719,22 @@ select {
           height: 6rem; } }
   .rivalry__stats {
     margin-bottom: 3rem;
-    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 1px 2px #ccc; }
+    font-weight: 700;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 18px #ddd; }
   .rivalry__stat {
-    padding: 1rem;
-    background-color: #eee; }
+    padding: 1rem; }
     .rivalry__stat--streak, .rivalry__stat--highStreak {
       -ms-flex: 1;
           flex: 1; }
     .rivalry__stat--streak {
-      background-color: #f7f756; }
+      background-color: #f7ae66; }
     .rivalry__stat--highStreak {
-      background-color: #8dc63f; }
+      background-color: #78e3ad; }
+    .rivalry__stat--biggest-win span {
+      font-size: 3rem; }
     .rivalry__stat--biggest-win span + span {
       margin-left: 30rem; }
       @media only screen and (max-width: 500px) {
@@ -713,7 +743,6 @@ select {
     .rivalry__stat-row {
       display: -ms-flexbox;
       display: flex;
-      font-weight: 700;
       -ms-flex-align: center;
           align-items: center; }
       .rivalry__stat-row span:first-child,
@@ -730,17 +759,19 @@ select {
       display: inline-block;
       height: 1rem; }
     .rivalry__stat-p1 {
-      background-color: #da291c; }
+      background-color: #f16649; }
     .rivalry__stat-p2 {
-      background-color: #005b9e; }
+      background-color: #09b39c; }
   .rivalry__streaks {
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 3rem;
-    border-radius: 4px;
     font-weight: 900;
     overflow: hidden;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    border-radius: 6px;
+    box-shadow: 0 1px 18px #ddd;
+    color: rgba(0, 0, 0, 0.7); }
     .rivalry__streaks span {
       display: block;
       font-weight: 400; }
@@ -760,9 +791,9 @@ select {
       font-weight: bold;
       text-transform: uppercase; }
     .rivalry__players .rivalry__player1 {
-      background-color: #da291c; }
+      background-color: #f16649; }
     .rivalry__players .rivalry__player2 {
-      background-color: #005b9e; }
+      background-color: #09b39c; }
     .rivalry__players + .rivalry__stat {
       padding-bottom: 0; }
   .rivalry__versus {
@@ -775,20 +806,23 @@ select {
   .rivalry__results {
     list-style: none;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0 1px 18px #ddd;
+    border-radius: 6px; }
   .rivalry__result {
     margin: 0;
     padding: 1.6rem 0 1.4rem;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #444; }
+    color: #405189; }
   .rivalry__result + .rivalry__result {
-    border-top: .1rem solid #eee; }
+    border-top: .3rem solid #eee; }
   .rivalry .scorebox {
     display: inline-block;
     margin: 0 1rem 1rem;
     padding: 0 1rem;
-    background-color: #005b9e;
+    background-color: #09b39c;
     font-weight: 900;
     color: #fff;
     border-radius: .2rem; }
@@ -802,6 +836,7 @@ select {
     margin-bottom: 3rem; }
     .rivalry__addResult input[type=text] {
       width: 5rem;
+      height: 3.6rem;
       padding: .6rem 0;
       text-align: center;
       border: 1px solid #ddd; }
@@ -810,9 +845,10 @@ select {
       width: 14rem;
       margin: 2rem auto 0;
       padding: 1rem 0;
-      background-color: #da291c;
       color: #fff;
-      text-align: center;
-      border-radius: 4px; }
+      background-color: #f16649;
+      border: 0;
+      border-radius: 4px;
+      text-align: center; }
       .rivalry__addResult input[type=submit]:disabled {
         background-color: #eee; }

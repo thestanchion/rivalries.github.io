@@ -1,6 +1,12 @@
 .rivalry {
+    margin: 3rem 2rem 2rem 0;
     font-size: 1.6rem;
     text-align: center;
+
+    @media only screen and (max-width: 700px) {
+        margin-top: 0;
+        margin-left: 2rem;
+    }
 
     table {
         width: 100%;
@@ -39,14 +45,15 @@
 
     &__stats {
         margin-bottom: 3rem;
-        border-radius: 6px;
         overflow: hidden;
-        box-shadow: 0 1px 2px #ccc;
+        font-weight: 700;
+        background-color: #fff;
+        border-radius: 6px;
+        box-shadow: 0 1px 18px #ddd;
     }
     
     &__stat {
         padding: 1rem;
-        background-color: #eee;
         
         &--streak,
         &--highStreak {
@@ -62,6 +69,10 @@
         }
 
         &--biggest-win {
+
+            span {
+                font-size: 3rem;
+            }
         
             span + span {
                 margin-left: 30rem;
@@ -75,7 +86,6 @@
 
         &-row {
             display: flex;
-            font-weight: 700;
             align-items: center;
 
             span:first-child,
@@ -112,10 +122,12 @@
     &__streaks {
         display: flex;
         margin-bottom: 3rem;
-        border-radius: 4px;
         font-weight: 900;
         overflow: hidden;
         text-transform: uppercase;
+        border-radius: 6px;
+        box-shadow: 0 1px 18px #ddd;
+        color: rgba(0,0,0,0.7);
 
         span {
             display: block;
@@ -171,6 +183,9 @@
         list-style: none;
         margin: 0;
         padding: 0;
+        background-color: #fff;
+        box-shadow: 0 1px 18px #ddd;
+        border-radius: 6px;
     }
 
     &__result {
@@ -178,11 +193,11 @@
         padding: 1.6rem 0 1.4rem;
         font-size: 1.8rem;
         font-weight: 700;
-        color: #444;
+        color: $winner;
     }
 
     &__result + &__result {
-        border-top: .1rem solid #eee;
+        border-top: .3rem solid #eee;
     }
 
     .scorebox {
@@ -208,6 +223,7 @@
 
         input[type=text] {
             width: 5rem;
+            height: 3.6rem;
             padding: .6rem 0;
             text-align: center;
             border: 1px solid #ddd;
@@ -218,10 +234,11 @@
             width: 14rem;
             margin: 2rem auto 0;
             padding: 1rem 0;
-            background-color: $primary-color;
             color: #fff;
-            text-align: center;
+            background-color: $primary-color;
+            border: 0;
             border-radius: 4px;
+            text-align: center;
 
             &:disabled {
                 background-color: #eee;

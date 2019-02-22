@@ -2,24 +2,26 @@
 <html>
     <head>
         <title>FIFA Rivalries</title>
-        <link href="http://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="dist/css/main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#e5127d">
     </head>
     <body>
         <div id="app" class="app">
-            <ul class="listing" v-cloak>
-                <li v-for="( rivalry, index ) in rivalries">
-                    <a href="#" v-on:click="viewRivalry( rivalry, index )">{{ rivalry.player1 }} vs {{ rivalry.player2 }}</a>
-                </li>
-                <!-- <li>
-                    <input type="text" v-model="newP1" /><br/>
-                    vs<br/>
-                    <input type="text" v-model="newP2" />
-                    <button v-on:click="addRivalry">Add+</button>
-                </li> -->
-            </ul>
+            <div class="sidebar">
+                <ul class="listing" v-cloak>
+                    <li v-for="( rivalry, index ) in rivalries" :style="selectedItem( rivalry )">
+                        <a href="#" v-on:click="viewRivalry( rivalry, index )">{{ rivalry.player1 }} vs {{ rivalry.player2 }}</a>
+                    </li>
+                    <!-- <li>
+                        <input type="text" v-model="newP1" /><br/>
+                        vs<br/>
+                        <input type="text" v-model="newP2" />
+                        <button v-on:click="addRivalry">Add+</button>
+                    </li> -->
+                </ul>
+            </div>
 
             <section class="rivalry" v-cloak>
 

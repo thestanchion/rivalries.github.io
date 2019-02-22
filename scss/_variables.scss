@@ -6,19 +6,25 @@
 $pixelBase : 10;
 
 // Colours
-$primary-color: #da291c;
-$secondary-color: #005b9e;
+$primary-color: #f16649;
+$secondary-color: #09b39c;
 $white: #fff;
 $grey: #eaeaea;
-$highStreak: #8dc63f;
-$streak: #f7f756;
+$highStreak: #78e3ad;
+$streak: #f7ae66;
 
-$p1: #da291c;
-$p2: #005b9e;
+$body-bg: #f6f6f6;
+
+$sidebar: #405189;
+$sidebar-text: #eee;
+
+$winner: #405189;
+$p1: #f16649;
+$p2: #09b39c;
 
 // Font colours
-$body-text-color: #000;
+$body-text-color: #333;
 
 // Variables for site fonts
-$heading-font: 'Roboto', Arial, 'Helvetica Neue', Helvetica, sans-serif;
-$body-font: 'Roboto', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$heading-font: 'Source Sans Pro', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$body-font: 'Source Sans Pro', Arial, 'Helvetica Neue', Helvetica, sans-serif;
