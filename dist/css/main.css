@@ -414,7 +414,7 @@ body {
 
 body {
   color: #333;
-  background-color: #f6f6f6;
+  background-color: #232323;
   font: normal 400 2rem/1.5 "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif, Georgia, serif; }
 
 .wrapper {
@@ -658,7 +658,7 @@ select {
       grid-template-columns: 1fr; } }
 
 .sidebar {
-  background-color: #405189; }
+  background-color: #555; }
 
 .listing {
   width: 100%;
@@ -720,7 +720,7 @@ select {
     font-weight: 700;
     background-color: #fff;
     border-radius: 6px;
-    box-shadow: 0 1px 18px #ddd; }
+    box-shadow: 0 1px 18px #111; }
   .rivalry__stat {
     padding: 1rem; }
     .rivalry__stat--streak, .rivalry__stat--highStreak {
@@ -767,7 +767,7 @@ select {
     overflow: hidden;
     text-transform: uppercase;
     border-radius: 6px;
-    box-shadow: 0 1px 18px #ddd;
+    box-shadow: 0 1px 18px #111;
     color: rgba(0, 0, 0, 0.7); }
     .rivalry__streaks span {
       display: block;
@@ -805,7 +805,7 @@ select {
     margin: 0;
     padding: 0;
     background-color: #fff;
-    box-shadow: 0 1px 18px #ddd;
+    box-shadow: 0 1px 18px #111;
     border-radius: 6px; }
   .rivalry__result {
     margin: 0;
