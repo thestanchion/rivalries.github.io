@@ -829,27 +829,24 @@ select {
     font-weight: 400;
     color: #bbb;
     text-transform: uppercase; }
-  .rivalry__addResult {
-    margin-bottom: 3rem;
-    color: #fff; }
-    .rivalry__addResult input[type=text] {
-      width: 5rem;
-      height: 3.6rem;
-      padding: .6rem 0;
-      text-align: center;
-      color: #444;
-      border: 1px solid #ddd;
-      border-radius: 3px; }
-    .rivalry__addResult input[type=submit] {
-      display: block;
-      width: 14rem;
-      margin: 2rem auto 0;
-      padding: 1rem 0;
-      color: #fff;
-      background-color: #f16649;
-      border: 0;
-      border-radius: 4px;
-      text-align: center; }
-      .rivalry__addResult input[type=submit]:disabled {
-        background-color: #eee;
-        color: #888; }
+  .rivalry__addResult input[type=text] {
+    width: 5rem;
+    height: 3.6rem;
+    padding: .6rem 0;
+    text-align: center;
+    color: #444;
+    border: 1px solid #ddd;
+    border-radius: 3px; }
+  .rivalry__addResult input[type=submit] {
+    display: block;
+    width: 14rem;
+    margin: 2rem auto 0;
+    padding: 1rem 0;
+    color: #fff;
+    background-color: #f16649;
+    border: 0;
+    border-radius: 4px;
+    text-align: center; }
+    .rivalry__addResult input[type=submit]:disabled {
+      background-color: #eee;
+      color: #888; }
