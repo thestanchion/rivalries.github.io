@@ -220,13 +220,16 @@
 
     &__addResult {
         margin-bottom: 3rem;
+        color: #fff;
 
         input[type=text] {
             width: 5rem;
             height: 3.6rem;
             padding: .6rem 0;
             text-align: center;
+            color: #444;
             border: 1px solid #ddd;
+            border-radius: 3px;
         }
 
         input[type=submit] {
@@ -242,6 +245,7 @@
 
             &:disabled {
                 background-color: #eee;
+                color: #888;
             }
         }
     }
