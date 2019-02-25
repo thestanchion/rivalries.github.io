@@ -225,7 +225,7 @@
             height: 3.6rem;
             padding: .6rem 0;
             text-align: center;
-            color: #444;
+            color: #eee;
             background-color: #333;
             border: 0;
             border-radius: 3px;
@@ -244,7 +244,7 @@
             text-align: center;
 
             &:disabled {
-                background-color: #eee;
+                background-color: #333;
                 color: #888;
             }
         }
