@@ -835,8 +835,10 @@ select {
     padding: .6rem 0;
     text-align: center;
     color: #444;
-    border: 1px solid #ddd;
-    border-radius: 3px; }
+    background-color: #333;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 2px #000; }
   .rivalry__addResult input[type=submit] {
     display: block;
     width: 14rem;
