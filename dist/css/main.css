@@ -363,10 +363,10 @@ th {
   display: none !important; }
 
 .u-highlight {
-  color: #78e3ad !important; }
+  color: #05bb90 !important; }
 
 .u-highlight-bg {
-  background-color: #f16649 !important;
+  background-color: #fb404b !important;
   color: #fff !important; }
 
 .u-lowlight {
@@ -436,7 +436,7 @@ li {
   margin-bottom: 0.8rem; }
 
 a {
-  color: #f16649;
+  color: #fb404b;
   text-decoration: none; }
 
 a:hover {
@@ -485,7 +485,7 @@ code {
   white-space: -o-pre-wrap;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  background-color: #f16649;
+  background-color: #fb404b;
   border: 0;
   color: #eee;
   font-size: 1.6rem;
@@ -519,7 +519,7 @@ blockquote cite:before {
 hr {
   margin: 0.3rem 0;
   border: none;
-  border-top: 3px solid #f16649; }
+  border-top: 3px solid #fb404b; }
 
 address {
   margin: 0 0 1.2rem 0;
@@ -727,9 +727,9 @@ select {
       -ms-flex: 1;
           flex: 1; }
     .rivalry__stat--streak {
-      background-color: #f7ae66; }
+      background-color: #ffc942; }
     .rivalry__stat--highStreak {
-      background-color: #78e3ad; }
+      background-color: #05bb90; }
     .rivalry__stat--biggest-win span {
       font-size: 3rem; }
     .rivalry__stat--biggest-win span + span {
@@ -756,9 +756,9 @@ select {
       display: inline-block;
       height: 1rem; }
     .rivalry__stat-p1 {
-      background-color: #f16649; }
+      background-color: #fb404b; }
     .rivalry__stat-p2 {
-      background-color: #09b39c; }
+      background-color: #36edfe; }
   .rivalry__streaks {
     display: -ms-flexbox;
     display: flex;
@@ -788,9 +788,9 @@ select {
       font-weight: bold;
       text-transform: uppercase; }
     .rivalry__players .rivalry__player1 {
-      background-color: #f16649; }
+      background-color: #fb404b; }
     .rivalry__players .rivalry__player2 {
-      background-color: #09b39c; }
+      background-color: #36edfe; }
     .rivalry__players + .rivalry__stat {
       padding-bottom: 0; }
   .rivalry__versus {
@@ -819,7 +819,7 @@ select {
     display: inline-block;
     margin: 0 1rem 1rem;
     padding: 0 1rem;
-    background-color: #09b39c;
+    background-color: #232323;
     font-weight: 900;
     color: #fff;
     border-radius: .2rem; }
@@ -845,7 +845,7 @@ select {
     margin: 2rem auto 0;
     padding: 1rem 0;
     color: #fff;
-    background-color: #f16649;
+    background-color: #fb404b;
     border: 0;
     border-radius: 4px;
     text-align: center; }

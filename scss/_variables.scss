@@ -6,21 +6,21 @@
 $pixelBase : 10;
 
 // Colours
-$primary-color: #f16649;
-$secondary-color: #09b39c;
+$primary-color: #fb404b;
+$secondary-color: #36edfe;
 $white: #fff;
 $grey: #eaeaea;
-$highStreak: #78e3ad;
-$streak: #f7ae66;
+$highStreak: #05bb90;
+$streak: #ffc942;
 
 $body-bg: #232323;
 
 $sidebar: #555;
 $sidebar-text: #eee;
 
-$winner: #78e3ad;
-$p1: #f16649;
-$p2: #09b39c;
+$winner: #05bb90;
+$p1: $primary-color;
+$p2: $secondary-color;
 
 // Font colours
 $body-text-color: #eee;
