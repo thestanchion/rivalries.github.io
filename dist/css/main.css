@@ -758,7 +758,7 @@ select {
     .rivalry__stat-p1 {
       background-color: #fb404b; }
     .rivalry__stat-p2 {
-      background-color: #36edfe; }
+      background-color: #60c4ce; }
   .rivalry__streaks {
     display: -ms-flexbox;
     display: flex;
@@ -790,7 +790,7 @@ select {
     .rivalry__players .rivalry__player1 {
       background-color: #fb404b; }
     .rivalry__players .rivalry__player2 {
-      background-color: #36edfe; }
+      background-color: #60c4ce; }
     .rivalry__players + .rivalry__stat {
       padding-bottom: 0; }
   .rivalry__versus {
