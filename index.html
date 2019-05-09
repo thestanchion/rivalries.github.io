@@ -99,7 +99,7 @@
                     <div class="rivalry__stat rivalry__stat--streak" v-if="selectedRivalry.results" v-html="getStreak()"></div>
                 </div>
 
-                <ol class="rivalry__results" v-if="selectedRivalry.results">
+                <ol class="rivalry__results" v-if="selectedRivalry">
                     <li class="rivalry__addResult rivalry__result">
                         <form v-if="selectedRivalry.player1">
                             <label for="player1">{{ selectedRivalry.player1 }}</label>

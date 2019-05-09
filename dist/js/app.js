@@ -31,7 +31,33 @@ var app = new Vue({
         p2Score: '',
         newP1: '',
         newP2: '',
-        vsPos: 0
+        vsPos: 0,
+        standings: {
+            ash: {
+                played: 0,
+                won: 0,
+                drawn: 0,
+                lost: 0,
+                gd: 0,
+                points: 0
+            },
+            craig: {
+                played: 0,
+                won: 0,
+                drawn: 0,
+                lost: 0,
+                gd: 0,
+                points: 0
+            },
+            liam: {
+                played: 0,
+                won: 0,
+                drawn: 0,
+                lost: 0,
+                gd: 0,
+                points: 0
+            }
+        }
     },
     methods: {
         getData: function getData() {
@@ -46,22 +72,16 @@ var app = new Vue({
             _this.firebase.ref('/rivalries').once('value').then(function (snapshot) {
                 _this.rivalries = snapshot.val();
 
-                setTimeout(function () {
-                    _this.rivalryKeys();
-                    _this.viewRivalry(_this.rivalries[_this.fbIndex]);
-                    _this.p1Score = 0;
-                    _this.p2Score = 0;
-                });
+                _this.rivalries = _this.rivalryKeys(snapshot.val());
+                _this.viewRivalry(_this.rivalries[_this.fbIndex]);
+                _this.p1Score = '';
+                _this.p2Score = '';
             });
         },
         rivalryKeys: function rivalryKeys(data) {
-            console.log(data);
-
             for (var rivalry in data) {
                 data[rivalry].key = rivalry;
             }
-
-            console.log(data);
 
             return data;
         },
@@ -83,6 +103,10 @@ var app = new Vue({
         },
         selectedItem: function selectedItem(rivalry) {
             var _this = this;
+
+            if (!_this.selectedRivalry) {
+                return "background-color: rgba(0,0,0,.5);";
+            }
             if (rivalry.key === _this.selectedRivalry.key) {
                 return "background-color: rgba(0,0,0,.5);";
             }
@@ -111,10 +135,6 @@ var app = new Vue({
             _this.p1 = _this.buildStats('player1');
             _this.p2 = _this.buildStats('player2');
             _this.getStreak();
-
-            // setTimeout( function() {
-            //     _this.bakePie();
-            // });
         },
         getEmoji: function getEmoji(player) {
             var _this = this;
@@ -300,23 +320,26 @@ var app = new Vue({
             for (i in _this.selectedRivalry.results) {
                 var result = _this.selectedRivalry.results[i];
 
-                if (result.player1 > result.player2) {
-                    streakholder = _this.selectedRivalry.player1;
+                if (result.player1 === result.player2) {
+                    p1Count = 0;
+                    p2Count = 0;
+                } else if (result.player1 > result.player2) {
                     p2Count = 0;
                     p1Count++;
                 } else if (result.player2 > result.player1) {
-                    streakholder = _this.selectedRivalry.player1;
                     p1Count = 0;
                     p2Count++;
                 }
 
                 if (p1Count > longest) {
                     longest = p1Count;
+                    streakholder = _this.selectedRivalry.player1;
                 } else if (p2Count > longest) {
                     longest = p2Count;
+                    streakholder = _this.selectedRivalry.player2;
                 }
             }
-            console.log({ p1Count: p1Count, p2Count: p2Count });
+
             return "Longest streak: <span>" + streakholder + " - " + longest + " games</span>";
         },
         getStreak: function getStreak() {
@@ -363,12 +386,6 @@ var app = new Vue({
                         return "Current streak: <span>" + streakholder + " - " + p2Count + " games</span>";
                     }
                 }
-            }
-        },
-        didP1Win: function didP1Win(result) {
-
-            if (result.player1 > result.player2) {
-                return true;
             }
         }
     },
