@@ -112,6 +112,7 @@
                         </form>
                     </li>
                     <li v-for="( result, index ) in orderedResults( selectedRivalry.results )" class="rivalry__result">
+                        <span class="game-version">{{ result.date > 1569849025573 ? '20' : '17' }}</span>
                         <span v-bind:class="{ 'u-highlight': result.player1 > result.player2, 'u-lowlight': result.player2 > result.player1 }">{{ selectedRivalry.player1 }}</span> <span class="scorebox"><span class="rivalry__score">{{ result.player1 }}</span> - <span class="rivalry__score">{{ result.player2 }}</span></span> <span v-bind:class="{ 'u-highlight': result.player2 > result.player1, 'u-lowlight': result.player1 > result.player2 }">{{ selectedRivalry.player2 }}</span>
                         <span class="rivalry__date">{{ fixtureDate( result.date ) }} <a href="#x" v-on:click="deleteResult( $event, result )">x</a></span>
                     </li>
